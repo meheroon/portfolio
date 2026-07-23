@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Meherun Nessa Ferdausi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">Meherun<span>.</span>Dev</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="container">
+      <span class="section-label">Projects</span>
+      <h1>My Recent Work</h1>
+      <p>A showcase of my best projects spanning full-stack, AI, and database design.</p>
+    </div>
+  </div>
+
+  <!-- ALL PROJECTS -->
+  <section class="section">
+    <div class="container">
+      <div class="projects-grid">
+        <!-- VoyageAI -->
+        <div class="project-card reveal">
+          <div class="project-image" style="padding:0;overflow:hidden;">
+            <img src="images/projects/voyageai.svg" alt="VoyageAI Preview" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">VoyageAI — AI Travel Planner</h3>
+            <p class="project-description">An AI-powered travel planning platform with OpenAI GPT-4o integration. Features trip planner, chat assistant, content generator, and data analyzer with full-stack TypeScript.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Next.js 14</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">OpenAI GPT-4o</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">TanStack Query</span>
+            </div>
+            <a href="project-detail.html?project=voyageai" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- FundSpark -->
+        <div class="project-card reveal">
+          <div class="project-image" style="padding:0;overflow:hidden;">
+            <img src="images/projects/fundspark.svg" alt="FundSpark Preview" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">FundSpark — Crowdfunding Platform</h3>
+            <p class="project-description">A full-stack MERN crowdfunding platform with credit system, campaign management, Stripe payments, role-based dashboards, and admin approval workflows.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Next.js 14</span>
+              <span class="tech-tag">React 18</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">Stripe</span>
+            </div>
+            <a href="project-detail.html?project=fundspark" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Fable -->
+        <div class="project-card reveal">
+          <div class="project-image" style="padding:0;overflow:hidden;">
+            <img src="images/projects/fable.svg" alt="Fable Preview" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Fable — Digital Ebook Marketplace</h3>
+            <p class="project-description">A modern ebook sharing platform with role-based dashboards for readers, writers, and admins. Features Stripe payments, Firebase Auth, and a full MERN backend.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Next.js 16</span>
+              <span class="tech-tag">React 19</span>
+              <span class="tech-tag">Tailwind CSS</span>
+              <span class="tech-tag">Firebase</span>
+              <span class="tech-tag">Stripe</span>
+            </div>
+            <a href="project-detail.html?project=fable" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- JobHub -->
+        <div class="project-card reveal">
+          <div class="project-image" style="padding:0;overflow:hidden;">
+            <img src="images/projects/jobhub.svg" alt="JobHub Preview" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">JobHub — Job Board Platform</h3>
+            <p class="project-description">A production-ready job board with 14 routes, JWT auth, admin dashboard, job management, search/filter/sort, and responsive charts with Recharts.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Next.js 14</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Tailwind CSS</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">Recharts</span>
+            </div>
+            <a href="project-detail.html?project=jobhub" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- DriveFleet -->
+        <div class="project-card reveal">
+          <div class="project-image" style="padding:0;overflow:hidden;">
+            <img src="images/projects/drivefleet.svg" alt="DriveFleet Preview" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">DriveFleet — Car Rental Platform</h3>
+            <p class="project-description">A complete car rental platform with client and server applications. Full-stack MERN implementation with user authentication and booking management.</p>
+            <div class="project-tech">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">Express.js</span>
+              <span class="tech-tag">MongoDB</span>
+            </div>
+            <a href="project-detail.html?project=drivefleet" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Python Projects -->
+        <div class="project-card reveal">
+          <div class="project-image" style="padding:0;overflow:hidden;">
+            <img src="images/projects/python-db.svg" alt="Python & Database Projects" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Python & Database Projects</h3>
+            <p class="project-description">Advanced Library Management CLI, Student Management System, Quiz App Database Design, Hospital Management System DB Design, and Contact Book Management.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">SQL</span>
+              <span class="tech-tag">CLI</span>
+            </div>
+            <a href="project-detail.html?project=python-db" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Meherun Nessa Ferdausi. Crafted with <i class="fas fa-heart" style="color: var(--accent-warm);"></i> and lots of coffee.</p>
+        <div class="footer-socials">
+          <a href="https://github.com/meheroon" target="_blank" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/meherun-nessa-ferdausi-korobi/" target="_blank" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/rooonroon" target="_blank" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="shared.js"></script>
+</body>
+</html>

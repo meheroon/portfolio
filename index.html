@@ -1,2245 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meherun Nessa Ferdausi — Full Stack Developer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --ink: #0a0a1a;
-            --ink-light: #12122a;
-            --ink-lighter: #1a1a3e;
-            --paper: #f0f2f5;
-            --paper-dim: #e4e7eb;
-            --accent: #6c63ff;
-            --accent-glow: rgba(108, 99, 255, 0.3);
-            --accent-secondary: #00d4aa;
-            --accent-warm: #ff6b6b;
-            --text-primary: #ffffff;
-            --text-secondary: #b8bcc8;
-            --text-muted: #6b7280;
-            --border: rgba(255, 255, 255, 0.08);
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-hover: rgba(255, 255, 255, 0.06);
-            --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            --font-mono: 'Fira Code', 'Cascadia Code', Consolas, monospace;
-            --nav-height: 70px;
-            --section-padding: 100px 0;
-            --container-width: 1200px;
-            --transition-fast: 0.2s ease;
-            --transition-normal: 0.3s ease;
-            --transition-slow: 0.5s ease;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: var(--nav-height);
-        }
-
-        body {
-            font-family: var(--font-body);
-            background: var(--ink);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* ===== NAVBAR ===== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: var(--nav-height);
-            background: rgba(10, 10, 26, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            transition: var(--transition-normal);
-        }
-
-        .navbar.scrolled {
-            background: rgba(10, 10, 26, 0.95);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .navbar .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-        }
-
-        .nav-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-logo span {
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: var(--transition-fast);
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--text-primary);
-            background: var(--card-bg);
-        }
-
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 8px;
-            background: none;
-            border: none;
-        }
-
-        .nav-toggle span {
-            width: 24px;
-            height: 2px;
-            background: var(--text-primary);
-            border-radius: 2px;
-            transition: var(--transition-normal);
-        }
-
-        .nav-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .nav-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .nav-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        /* ===== HERO SECTION ===== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: var(--nav-height);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            opacity: 0.4;
-            pointer-events: none;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 212, 170, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-content {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            font-size: 0.85rem;
-            color: var(--accent);
-            margin-bottom: 24px;
-        }
-
-        .hero-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--accent-secondary);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 8px;
-            letter-spacing: -1px;
-        }
-
-        .hero-title .highlight {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-            font-weight: 400;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 28px;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition-normal);
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent) 0%, #5a52d5 100%);
-            color: var(--text-primary);
-            box-shadow: 0 4px 20px var(--accent-glow);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--accent-glow);
-        }
-
-        .btn-secondary {
-            background: var(--card-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            background: var(--card-hover);
-            border-color: var(--accent);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 12px;
-        }
-
-        .social-link {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            text-decoration: none;
-            transition: var(--transition-normal);
-        }
-
-        .social-link:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: fadeInRight 0.8s ease forwards;
-        }
-
-        .hero-image-wrapper {
-            position: relative;
-            width: 380px;
-            height: 380px;
-        }
-
-        .hero-image-wrapper::before {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            border-radius: 30px;
-            z-index: -1;
-            animation: rotate 8s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .hero-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 28px;
-            background: var(--ink-lighter);
-        }
-
-        .hero-image-placeholder {
-            width: 100%;
-            height: 100%;
-            border-radius: 28px;
-            background: linear-gradient(135deg, var(--ink-lighter) 0%, var(--ink-light) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 6rem;
-            color: var(--accent);
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* ===== SECTION STYLES ===== */
-        .section {
-            padding: var(--section-padding);
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-label {
-            display: inline-block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .section-divider {
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-            margin: 16px auto 0;
-            border-radius: 2px;
-        }
-
-        /* ===== ABOUT SECTION ===== */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-content p {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-size: 1.05rem;
-        }
-
-        .about-content p strong {
-            color: var(--text-primary);
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 32px;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 24px 16px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            transition: var(--transition-normal);
-        }
-
-        .stat-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        .about-image-area {
-            display: flex;
-            justify-content: center;
-        }
-
-        .about-card {
-            width: 100%;
-            max-width: 400px;
-            padding: 40px;
-            background: linear-gradient(135deg, var(--ink-lighter) 0%, var(--ink-light) 100%);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            text-align: center;
-        }
-
-        .about-card-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-        }
-
-        .about-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-        }
-
-        .about-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* ===== SKILLS SECTION ===== */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 32px;
-        }
-
-        .skill-category {
-            padding: 32px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            transition: var(--transition-normal);
-        }
-
-        .skill-category:hover {
-            border-color: var(--accent);
-        }
-
-        .skill-category-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .skill-category-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .skill-category-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        .skill-item {
-            margin-bottom: 20px;
-        }
-
-        .skill-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .skill-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .skill-name {
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .skill-percent {
-            font-size: 0.85rem;
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .skill-bar {
-            height: 8px;
-            background: var(--ink-lighter);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-            border-radius: 4px;
-            width: 0;
-            transition: width 1s ease;
-        }
-
-        /* ===== EDUCATION SECTION ===== */
-        .timeline {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 24px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, var(--accent), var(--accent-secondary));
-        }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 64px;
-            margin-bottom: 40px;
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 16px;
-            top: 8px;
-            width: 18px;
-            height: 18px;
-            background: var(--accent);
-            border-radius: 50%;
-            border: 3px solid var(--ink);
-        }
-
-        .timeline-content {
-            padding: 24px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            transition: var(--transition-normal);
-        }
-
-        .timeline-content:hover {
-            border-color: var(--accent);
-        }
-
-        .timeline-date {
-            font-size: 0.85rem;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .timeline-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .timeline-institution {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* ===== EXPERIENCE SECTION ===== */
-        .experience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 24px;
-        }
-
-        .experience-card {
-            padding: 32px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            transition: var(--transition-normal);
-        }
-
-        .experience-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-        }
-
-        .experience-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .experience-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .experience-role {
-            font-size: 1.1rem;
-            font-weight: 700;
-        }
-
-        .experience-company {
-            font-size: 0.9rem;
-            color: var(--accent);
-        }
-
-        .experience-duration {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-
-        .experience-description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* ===== PROJECTS SECTION ===== */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 32px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: var(--transition-normal);
-        }
-
-        .project-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 220px;
-            background: linear-gradient(135deg, var(--ink-lighter) 0%, var(--ink-light) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--accent);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 50%, var(--card-bg) 100%);
-        }
-
-        .project-content {
-            padding: 24px;
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .project-description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 16px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .tech-tag {
-            padding: 4px 12px;
-            background: rgba(108, 99, 255, 0.1);
-            border: 1px solid rgba(108, 99, 255, 0.2);
-            border-radius: 100px;
-            font-size: 0.8rem;
-            color: var(--accent);
-            font-weight: 500;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: var(--transition-fast);
-        }
-
-        .project-link:hover {
-            gap: 12px;
-        }
-
-        /* ===== PROJECT DETAIL MODAL ===== */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            opacity: 0;
-            transition: opacity var(--transition-normal);
-        }
-
-        .modal-overlay.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .modal {
-            background: var(--ink-light);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            max-width: 800px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            color: var(--text-primary);
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition-fast);
-            z-index: 10;
-        }
-
-        .modal-close:hover {
-            background: var(--accent-warm);
-            border-color: var(--accent-warm);
-        }
-
-        .modal-image {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, var(--ink-lighter) 0%, var(--ink) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            color: var(--accent);
-            border-radius: 24px 24px 0 0;
-        }
-
-        .modal-content {
-            padding: 32px;
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .modal-section {
-            margin-bottom: 24px;
-        }
-
-        .modal-section h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .modal-section p,
-        .modal-section li {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .modal-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .modal-section li {
-            padding: 4px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .modal-section li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-
-        .modal-links {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .modal-links .btn {
-            flex: 1;
-            min-width: 150px;
-            justify-content: center;
-        }
-
-        /* ===== CONTACT SECTION ===== */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .contact-info p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            margin-bottom: 8px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: var(--transition-normal);
-        }
-
-        .contact-item:hover {
-            border-color: var(--accent);
-            transform: translateX(8px);
-        }
-
-        .contact-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .contact-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-        }
-
-        .contact-value {
-            font-weight: 600;
-        }
-
-        .contact-form {
-            padding: 32px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px 16px;
-            background: var(--ink);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text-primary);
-            font-family: var(--font-body);
-            font-size: 0.95rem;
-            transition: var(--transition-fast);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px var(--accent-glow);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-submit {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, var(--accent) 0%, #5a52d5 100%);
-            color: var(--text-primary);
-            border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-normal);
-        }
-
-        .form-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--accent-glow);
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            padding: 40px 0;
-            border-top: 1px solid var(--border);
-            text-align: center;
-        }
-
-        .footer-content {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .footer-content a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .footer-socials {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 20px;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 968px) {
-            .hero .container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-image {
-                order: -1;
-            }
-
-            .hero-image-wrapper {
-                width: 280px;
-                height: 280px;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-image-area {
-                order: -1;
-            }
-
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            :root {
-                --section-padding: 60px 0;
-                --nav-height: 60px;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: var(--nav-height);
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(10, 10, 26, 0.98);
-                flex-direction: column;
-                justify-content: center;
-                gap: 8px;
-                padding: 24px;
-                transform: translateX(100%);
-                transition: var(--transition-normal);
-            }
-
-            .nav-links.active {
-                transform: translateX(0);
-            }
-
-            .nav-links a {
-                font-size: 1.2rem;
-                padding: 12px 24px;
-                width: 100%;
-                text-align: center;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .hero-image-wrapper {
-                width: 220px;
-                height: 220px;
-            }
-
-            .about-stats {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 12px;
-            }
-
-            .stat-card {
-                padding: 16px 8px;
-            }
-
-            .stat-number {
-                font-size: 1.5rem;
-            }
-
-            .skills-grid,
-            .projects-grid,
-            .experience-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .modal {
-                margin: 16px;
-                border-radius: 16px;
-            }
-
-            .modal-image {
-                height: 200px;
-                border-radius: 16px 16px 0 0;
-            }
-
-            .modal-content {
-                padding: 24px;
-            }
-
-            .modal-title {
-                font-size: 1.4rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .about-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline::before {
-                left: 16px;
-            }
-
-            .timeline-item {
-                padding-left: 48px;
-            }
-
-            .timeline-dot {
-                left: 8px;
-            }
-        }
-
-        /* ===== SCROLL ANIMATIONS ===== */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meherun Nessa Ferdausi — Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- NAVBAR -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <a href="#hero" class="nav-logo">Meherun<span>.</span>Dev</a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#hero" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">Available for opportunities</div>
-                <h1 class="hero-title">
-                    Hi, I'm <span class="highlight">Meherun Nessa Ferdausi</span>
-                </h1>
-                <p class="hero-subtitle">Full Stack Software Engineer | Software QA Engineer | Learning Secure Software Development</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Get In Touch
-                    </a>
-                    <a href="https://github.com/meheroon" target="_blank" class="btn btn-secondary">
-                        <i class="fab fa-github"></i> View GitHub
-                    </a>
-                </div>
-                <div class="social-links">
-                    <a href="https://github.com/meheroon" target="_blank" class="social-link" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/meherun-nessa-ferdausi-korobi/" target="_blank" class="social-link" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://www.facebook.com/rooonroon" target="_blank" class="social-link" aria-label="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="hero-image-wrapper">
-                    <div class="hero-image-placeholder">
-                        <i class="fas fa-user-astronaut"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label">About Me</span>
-                <h2 class="section-title">Who I Am</h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="about-grid">
-                <div class="about-content reveal">
-                    <p>
-                        <strong>Hello!</strong> I'm Meherun Nessa Ferdausi, a Full Stack Software Engineer from Bangladesh 
-                        with a passion for building scalable web applications and improving software quality through testing.
-                    </p>
-                    <p>
-                        Currently, I work with <strong>JavaScript, React, Next.js, Node.js, Express.js, and MongoDB</strong> 
-                        while gaining practical experience in Software Quality Assurance at <strong>Ginilab Ltd.</strong>
-                    </p>
-                    <p>
-                        Alongside software development, I'm learning <strong>Secure Software Development and Application Security</strong> 
-                        to build reliable and secure software systems. I also have experience with <strong>Python, PHP, SQL databases, 
-                        and AI/LLM integration</strong>. I believe in building quality software through clean code, 
-                        testing, and security.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat-card">
-                            <div class="stat-number">32</div>
-                            <div class="stat-label">Repositories</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">15+</div>
-                            <div class="stat-label">Projects Built</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">10+</div>
-                            <div class="stat-label">Technologies</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image-area reveal">
-                    <div class="about-card">
-                        <div class="about-card-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Quick Facts</h3>
-                        <p>📍 Based in Dhaka, Bangladesh<br>
-                           🎯 Full Stack MERN + QA Engineer<br>
-                           🔐 Learning Secure Software Development<br>
-                           🚀 32 repos & counting</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SKILLS SECTION -->
-    <section class="section" id="skills" style="background: var(--ink-light);">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label">My Skills</span>
-                <h2 class="section-title">What I Know</h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category reveal">
-                    <div class="skill-category-header">
-                        <div class="skill-category-icon">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <h3 class="skill-category-title">Frontend</h3>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">HTML5 & CSS3</span>
-                            <span class="skill-percent">95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="95"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">JavaScript (ES6+)</span>
-                            <span class="skill-percent">90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="90"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">React.js</span>
-                            <span class="skill-percent">85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">Next.js</span>
-                            <span class="skill-percent">80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="80"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">Tailwind CSS</span>
-                            <span class="skill-percent">88%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="88"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category reveal">
-                    <div class="skill-category-header">
-                        <div class="skill-category-icon">
-                            <i class="fas fa-server"></i>
-                        </div>
-                        <h3 class="skill-category-title">Backend</h3>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">Node.js</span>
-                            <span class="skill-percent">82%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="82"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">Express.js</span>
-                            <span class="skill-percent">80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="80"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">MongoDB</span>
-                            <span class="skill-percent">75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="75"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">MySQL</span>
-                            <span class="skill-percent">70%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="70"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">REST APIs</span>
-                            <span class="skill-percent">85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">Firebase & JWT</span>
-                            <span class="skill-percent">75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="75"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">Python</span>
-                            <span class="skill-percent">70%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="70"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">PHP</span>
-                            <span class="skill-percent">65%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="65"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category reveal">
-                    <div class="skill-category-header">
-                        <div class="skill-category-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <h3 class="skill-category-title">Tools & Others</h3>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">Git & GitHub</span>
-                            <span class="skill-percent">88%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="88"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">VS Code</span>
-                            <span class="skill-percent">92%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="92"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">Figma</span>
-                            <span class="skill-percent">70%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="70"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">Linux Basics</span>
-                            <span class="skill-percent">65%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="65"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">AI / LLM (OpenAI GPT)</span>
-                            <span class="skill-percent">70%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="70"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">Stripe Integration</span>
-                            <span class="skill-percent">72%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="72"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category reveal">
-                    <div class="skill-category-header">
-                        <div class="skill-category-icon">
-                            <i class="fas fa-bug"></i>
-                        </div>
-                        <h3 class="skill-category-title">Testing & QA</h3>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">Manual Testing</span>
-                            <span class="skill-percent">90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="90"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">API Testing</span>
-                            <span class="skill-percent">80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="80"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">SQL Testing</span>
-                            <span class="skill-percent">75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="75"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">Jira & Bug Tracking</span>
-                            <span class="skill-percent">80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="80"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span class="skill-name">Log Analysis</span>
-                            <span class="skill-percent">70%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="70"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- EDUCATION SECTION -->
-    <section class="section" id="education">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label">Education</span>
-                <h2 class="section-title">My Academic Journey</h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Software QA Engineer</div>
-                        <h3 class="timeline-title">Ginilab Ltd.</h3>
-                        <p class="timeline-institution">Dhaka, Bangladesh</p>
-                        <p style="color: var(--text-secondary); margin-top: 12px;">
-                            Working on Software Quality Assurance — Manual Testing, API Testing, 
-                            SQL Testing, Jira, Log Analysis, and bug tracking.
-                        </p>
-                    </div>
-                </div>
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2026 Roadmap</div>
-                        <h3 class="timeline-title">Continuous Learning</h3>
-                        <p class="timeline-institution">Self-Directed</p>
-                        <p style="color: var(--text-secondary); margin-top: 12px;">
-                            Becoming Mid-Level Full Stack Engineer · Mastering Backend Development · 
-                            Improving Software Testing Skills · Learning Secure Coding · Building Cyber Security Projects
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- EXPERIENCE SECTION -->
-    <section class="section" id="experience" style="background: var(--ink-light);">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label">Experience</span>
-                <h2 class="section-title">Where I've Worked</h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="experience-grid">
-                <div class="experience-card reveal">
-                    <div class="experience-header">
-                        <div class="experience-icon">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                        <div>
-                            <div class="experience-role">Software QA Engineer</div>
-                            <div class="experience-company">Ginilab Ltd.</div>
-                        </div>
-                    </div>
-                    <div class="experience-duration">Present</div>
-                    <p class="experience-description">
-                        Performing Manual Testing, API Testing, SQL Testing, and Log Analysis. 
-                        Tracking bugs and conducting root cause analysis using Jira. 
-                        Ensuring software quality across development lifecycle.
-                    </p>
-                </div>
-                <div class="experience-card reveal">
-                    <div class="experience-header">
-                        <div class="experience-icon">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <div>
-                            <div class="experience-role">Full Stack Developer</div>
-                            <div class="experience-company">Personal & Open Source</div>
-                        </div>
-                    </div>
-                    <div class="experience-duration">2023 — Present</div>
-                    <p class="experience-description">
-                        Built 32 repositories on GitHub including full-stack MERN applications: 
-                        VoyageAI (AI travel planner), FundSpark (crowdfunding), Fable (ebook marketplace), 
-                        JobHub (job board), and DriveFleet (car rental). 
-                        Also built Python CLI tools, PHP apps, and database design projects.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJECTS SECTION -->
-    <section class="section" id="projects">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label">Projects</span>
-                <h2 class="section-title">My Recent Work</h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="projects-grid">
-                <!-- Project 1: VoyageAI -->
-                <div class="project-card reveal">
-                    <div class="project-image">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">VoyageAI — AI Travel Planner</h3>
-                        <p class="project-description">
-                            An AI-powered travel planning platform with OpenAI GPT-4o integration. 
-                            Features trip planner, chat assistant, content generator, and data analyzer with full-stack TypeScript.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Next.js 14</span>
-                            <span class="tech-tag">TypeScript</span>
-                            <span class="tech-tag">OpenAI GPT-4o</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">TanStack Query</span>
-                        </div>
-                        <a href="https://github.com/meheroon/-voyage-ai" target="_blank" class="project-link">
-                            View on GitHub <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- Project 2: FundSpark -->
-                <div class="project-card reveal">
-                    <div class="project-image">
-                        <i class="fas fa-hand-holding-heart"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">FundSpark — Crowdfunding Platform</h3>
-                        <p class="project-description">
-                            A full-stack MERN crowdfunding platform with credit system, campaign management, 
-                            Stripe payments, role-based dashboards, and admin approval workflows.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Next.js 14</span>
-                            <span class="tech-tag">React 18</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Stripe</span>
-                        </div>
-                        <a href="https://github.com/meheroon/crowdfunding-platform" target="_blank" class="project-link">
-                            View on GitHub <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- Project 3: Fable -->
-                <div class="project-card reveal">
-                    <div class="project-image">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Fable — Digital Ebook Marketplace</h3>
-                        <p class="project-description">
-                            A modern ebook sharing platform with role-based dashboards for readers, writers, and admins. 
-                            Features Stripe payments, Firebase Auth, and a full MERN backend.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Next.js 16</span>
-                            <span class="tech-tag">React 19</span>
-                            <span class="tech-tag">Tailwind CSS</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Stripe</span>
-                        </div>
-                        <a href="https://github.com/meheroon/fable-client" target="_blank" class="project-link">
-                            View on GitHub <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- Project 4: JobHub -->
-                <div class="project-card reveal">
-                    <div class="project-image">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">JobHub — Job Board Platform</h3>
-                        <p class="project-description">
-                            A production-ready job board with 14 routes, JWT auth, admin dashboard, 
-                            job management, search/filter/sort, and responsive charts with Recharts.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Next.js 14</span>
-                            <span class="tech-tag">TypeScript</span>
-                            <span class="tech-tag">Tailwind CSS</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Recharts</span>
-                        </div>
-                        <a href="https://github.com/meheroon/jobhub" target="_blank" class="project-link">
-                            View on GitHub <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- Project 5: DriveFleet -->
-                <div class="project-card reveal">
-                    <div class="project-image">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">DriveFleet — Car Rental Platform</h3>
-                        <p class="project-description">
-                            A complete car rental platform with client and server applications. 
-                            Full-stack MERN implementation with user authentication and booking management.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">Express.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                        </div>
-                        <a href="https://github.com/meheroon/drivefleet-client" target="_blank" class="project-link">
-                            View on GitHub <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <!-- Project 6: Python Projects -->
-                <div class="project-card reveal">
-                    <div class="project-image">
-                        <i class="fas fa-terminal"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Python & Database Projects</h3>
-                        <p class="project-description">
-                            Advanced Library Management CLI, Student Management System, Quiz App Database Design, 
-                            Hospital Management System DB Design, and Contact Book Management.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">SQL</span>
-                            <span class="tech-tag">CLI</span>
-                        </div>
-                        <a href="https://github.com/meheroon?tab=repositories&language=python" target="_blank" class="project-link">
-                            View on GitHub <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJECT MODAL -->
-    <div class="modal-overlay" id="projectModal">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal()">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="modal-image" id="modalImage">
-                <i class="fas fa-code"></i>
-            </div>
-            <div class="modal-content">
-                <h2 class="modal-title" id="modalTitle">Project Name</h2>
-                
-                <div class="modal-section">
-                    <h4>Technology Stack</h4>
-                    <div class="project-tech" id="modalTech"></div>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>Description</h4>
-                    <p id="modalDescription"></p>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>Challenges Faced</h4>
-                    <ul id="modalChallenges"></ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>Future Improvements</h4>
-                    <ul id="modalImprovements"></ul>
-                </div>
-                
-                <div class="modal-links">
-                    <a href="#" class="btn btn-primary" id="modalLive" target="_blank">
-                        <i class="fas fa-external-link-alt"></i> Live Demo
-                    </a>
-                    <a href="#" class="btn btn-secondary" id="modalGithub" target="_blank">
-                        <i class="fab fa-github"></i> Source Code
-                    </a>
-                </div>
-            </div>
-        </div>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">Meherun<span>.</span>Dev</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </nav>
 
-    <!-- CONTACT SECTION -->
-    <section class="section" id="contact" style="background: var(--ink-light);">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-label">Contact</span>
-                <h2 class="section-title">Let's Connect</h2>
-                <div class="section-divider"></div>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info reveal">
-                    <p>
-                        I'm always open to discussing new projects, creative ideas, 
-                        or opportunities to be part of your vision. Feel free to reach out!
-                    </p>
-                    <a href="mailto:meherunnfk@yahoo.com" class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <div class="contact-label">Email</div>
-                            <div class="contact-value">meherunnfk@yahoo.com</div>
-                        </div>
-                    </a>
-                    <a href="https://www.linkedin.com/in/meherun-nessa-ferdausi-korobi/" target="_blank" class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-linkedin-in"></i>
-                        </div>
-                        <div>
-                            <div class="contact-label">LinkedIn</div>
-                            <div class="contact-value">Meherun Nessa Ferdausi</div>
-                        </div>
-                    </a>
-                    <a href="https://www.facebook.com/rooonroon" target="_blank" class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-facebook-f"></i>
-                        </div>
-                        <div>
-                            <div class="contact-label">Facebook</div>
-                            <div class="contact-value">rooonroon</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="contact-form reveal">
-                    <form id="contactForm" onsubmit="handleSubmit(event)">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" placeholder="John Doe" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="Project Inquiry" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
-                        </div>
-                        <button type="submit" class="form-submit">
-                            <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">Available for opportunities</div>
+        <h1 class="hero-title">Hi, I'm <span class="highlight">Meherun Nessa Ferdausi</span></h1>
+        <p class="hero-subtitle">Full Stack Software Engineer | Software QA Engineer | Learning Secure Software Development</p>
+        <div class="hero-buttons">
+          <a href="resume.html" download="Meherun_Nessa_Ferdausi_Resume.html" class="btn btn-primary">
+            <i class="fas fa-download"></i> Download Resume
+          </a>
+          <a href="resume.html" target="_blank" class="btn btn-secondary">
+            <i class="fas fa-eye"></i> View Resume
+          </a>
+          <a href="contact.html" class="btn btn-secondary">
+            <i class="fas fa-paper-plane"></i> Get In Touch
+          </a>
         </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2026 Meherun Nessa Ferdausi. Crafted with <i class="fas fa-heart" style="color: var(--accent-warm);"></i> and lots of coffee.</p>
-                <div class="footer-socials">
-                    <a href="https://github.com/meheroon" target="_blank" class="social-link" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/meherun-nessa-ferdausi-korobi/" target="_blank" class="social-link" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://www.facebook.com/rooonroon" target="_blank" class="social-link" aria-label="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                </div>
-            </div>
+        <div class="social-links">
+          <a href="https://github.com/meheroon" target="_blank" class="social-link" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/meherun-nessa-ferdausi-korobi/" target="_blank" class="social-link" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://www.facebook.com/rooonroon" target="_blank" class="social-link" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
         </div>
-    </footer>
+      </div>
+      <div class="hero-image">
+        <div class="hero-image-wrapper">
+          <img src="images/profile.png" alt="Meherun Nessa Ferdausi" style="width:100%;height:100%;object-fit:cover;border-radius:28px;">
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // ===== PROJECT DATA =====
-        const projects = [
-            {
-                title: 'VoyageAI — AI Travel Planner',
-                icon: 'fas fa-robot',
-                tech: ['Next.js 14', 'TypeScript', 'OpenAI GPT-4o', 'MongoDB', 'TanStack Query', 'Recharts', 'Tailwind CSS'],
-                description: 'A complete AI-powered travel planning platform combining modern web technologies with Large Language Models. Features an AI chat assistant, trip planner, content generator, recommendations engine, and data analyzer. Built with full-stack TypeScript.',
-                challenges: [
-                    'Integrating OpenAI GPT-4o for multiple AI features (chat, planning, content generation)',
-                    'Building a complex 8-section landing page with skeleton loading and animations',
-                    'Implementing role-based dashboards with Recharts data visualization',
-                    'Managing server state with TanStack Query across 30+ API endpoints'
-                ],
-                improvements: [
-                    'Add real-time collaboration on trip planning',
-                    'Integrate Google Maps API for route visualization',
-                    'Add multi-language support for international travelers',
-                    'Implement offline mode with service workers'
-                ],
-                live: 'https://voyage-ai-sand.vercel.app',
-                github: 'https://github.com/meheroon/-voyage-ai'
-            },
-            {
-                title: 'FundSpark — Crowdfunding Platform',
-                icon: 'fas fa-hand-holding-heart',
-                tech: ['Next.js 14', 'React 18', 'Node.js', 'MongoDB', 'Stripe', 'Firebase Auth', 'Tailwind CSS'],
-                description: 'A full-stack MERN crowdfunding platform where creators raise money for projects. Features a credit system (50 free credits for supporters, 20 for creators), Stripe payment integration, campaign approval workflows, and role-based dashboards.',
-                challenges: [
-                    'Designing the credit-based contribution system with 20:1 withdrawal ratio',
-                    'Implementing multi-role dashboards (Supporter, Creator, Admin)',
-                    'Building campaign approval workflow with admin moderation',
-                    'Real-time notification system for contributions and withdrawals'
-                ],
-                improvements: [
-                    'Add social sharing and campaign promotion features',
-                    'Implement milestone-based fund release',
-                    'Add campaign analytics and funding progress charts',
-                    'Build a mobile app for on-the-go contribution'
-                ],
-                live: 'https://fundspark-client.vercel.app',
-                github: 'https://github.com/meheroon/crowdfunding-platform'
-            },
-            {
-                title: 'Fable — Digital Ebook Marketplace',
-                icon: 'fas fa-book-open',
-                tech: ['Next.js 16', 'React 19', 'Tailwind CSS', 'Firebase Auth', 'Stripe', 'MongoDB'],
-                description: 'A modern ebook sharing platform built using the MERN Stack with Next.js 16 and React 19. Features role-based dashboards for readers, writers, and admins, Stripe payment integration, and Firebase authentication.',
-                challenges: [
-                    'Implementing role-based authorization across reader, writer, and admin dashboards',
-                    'Integrating Stripe payment flow with webhook handling',
-                    'Managing complex state with Firebase Auth and JWT tokens',
-                    'Building responsive layouts with Tailwind CSS'
-                ],
-                improvements: [
-                    'Add ebook reader with in-browser PDF rendering',
-                    'Implement real-time notifications for new book releases',
-                    'Add recommendation engine based on reading history',
-                    'Build a mobile app version'
-                ],
-                live: '#',
-                github: 'https://github.com/meheroon/fable-client'
-            },
-            {
-                title: 'JobHub — Job Board Platform',
-                icon: 'fas fa-briefcase',
-                tech: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'MongoDB', 'JWT', 'Recharts'],
-                description: 'A production-ready full-stack job board with 14 routes, JWT cookie-based auth, admin dashboard, job management, search/filter/sort/pagination, and fully responsive design with charts.',
-                challenges: [
-                    'Building 14 routes with role-based middleware protection',
-                    'Implementing JWT auth with HTTP-only cookies and bcrypt hashing',
-                    'Creating admin dashboard with Recharts data visualization',
-                    'Designing search, filtering, sorting, and pagination for job listings'
-                ],
-                improvements: [
-                    'Add job application tracking system',
-                    'Implement email notifications for new job matches',
-                    'Add company profiles and employer dashboards',
-                    'Build resume upload and parsing features'
-                ],
-                live: 'https://jobhub-rust.vercel.app',
-                github: 'https://github.com/meheroon/jobhub'
-            },
-            {
-                title: 'DriveFleet — Car Rental Platform',
-                icon: 'fas fa-car',
-                tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'REST API'],
-                description: 'A complete car rental platform with separate client and server applications. Full-stack MERN implementation with user authentication, booking management, and vehicle listing.',
-                challenges: [
-                    'Designing the car rental booking flow with availability checking',
-                    'Implementing secure user authentication with JWT',
-                    'Building the backend REST API with Express.js and MongoDB',
-                    'Handling image uploads for vehicle listings'
-                ],
-                improvements: [
-                    'Add payment integration for online booking',
-                    'Implement real-time vehicle availability updates',
-                    'Build an admin dashboard for fleet management',
-                    'Add GPS tracking integration'
-                ],
-                live: '#',
-                github: 'https://github.com/meheroon/drivefleet-client'
-            },
-            {
-                title: 'Python & Database Projects',
-                icon: 'fas fa-terminal',
-                tech: ['Python', 'MySQL', 'SQL', 'CLI', 'Database Design'],
-                description: 'A collection of Python projects including Advanced Library Management CLI, Student Management System, Quiz App Database Design, Hospital Management System DB Design, and Contact Book Management System.',
-                challenges: [
-                    'Designing efficient database schemas for complex relationships',
-                    'Building CLI interfaces with proper input validation',
-                    'Implementing CRUD operations with Python and MySQL',
-                    'Creating Entity-Relationship diagrams for database projects'
-                ],
-                improvements: [
-                    'Add web interface with Flask/Django',
-                    'Implement REST API endpoints for the CLI tools',
-                    'Add automated testing suites',
-                    'Deploy as Docker containers'
-                ],
-                live: '#',
-                github: 'https://github.com/meheroon?tab=repositories&language=python'
-            }
-        ];
+  <!-- ABOUT (summary) -->
+  <section class="section section-alt" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">About Me</span>
+        <h2 class="section-title">Who I Am</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-content reveal">
+          <p>
+            <strong>Hello!</strong> I'm Meherun Nessa Ferdausi, a Full Stack Software Engineer from Bangladesh
+            with a passion for building scalable web applications and improving software quality through testing.
+          </p>
+          <p>
+            Currently, I work with <strong>JavaScript, React, Next.js, Node.js, Express.js, and MongoDB</strong>
+            while gaining practical experience in Software Quality Assurance at <strong>Ginilab Ltd.</strong>
+          </p>
+          <p>
+            Alongside software development, I'm learning <strong>Secure Software Development and Application Security</strong>
+            to build reliable and secure software systems. I also have experience with <strong>Python, PHP, SQL databases,
+            and AI/LLM integration</strong>.
+          </p>
+          <div class="about-stats">
+            <div class="stat-card">
+              <div class="stat-number">32</div>
+              <div class="stat-label">Repositories</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">15+</div>
+              <div class="stat-label">Projects Built</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">10+</div>
+              <div class="stat-label">Technologies</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-image-area reveal">
+          <div class="about-card">
+            <div class="about-card-icon"><i class="fas fa-code"></i></div>
+            <h3>Quick Facts</h3>
+            <p>Based in Dhaka, Bangladesh<br>
+              Full Stack MERN + QA Engineer<br>
+              Learning Secure Software Development<br>
+              32 repos & counting</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // ===== NAVBAR =====
-        const navbar = document.getElementById('navbar');
-        const navLinks = document.getElementById('navLinks');
-        const navToggle = document.getElementById('navToggle');
-        const navItems = document.querySelectorAll('.nav-links a');
+  <!-- SKILLS (summary) -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">My Skills</span>
+        <h2 class="section-title">What I Know</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category reveal">
+          <div class="skill-category-header">
+            <div class="skill-category-icon"><i class="fas fa-palette"></i></div>
+            <h3 class="skill-category-title">Frontend</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">Laravel</span><span class="skill-percent">70%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">JavaScript (ES6+)</span><span class="skill-percent">90%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">React.js</span><span class="skill-percent">85%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">Next.js</span><span class="skill-percent">80%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">Tailwind CSS</span><span class="skill-percent">88%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-width="88"></div></div>
+          </div>
+        </div>
+        <div class="skill-category reveal">
+          <div class="skill-category-header">
+            <div class="skill-category-icon"><i class="fas fa-server"></i></div>
+            <h3 class="skill-category-title">Backend</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">Node.js</span><span class="skill-percent">82%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-width="82"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">Express.js</span><span class="skill-percent">80%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">MongoDB</span><span class="skill-percent">75%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">Python</span><span class="skill-percent">70%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-width="70"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">REST APIs</span><span class="skill-percent">85%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
+          </div>
+        </div>
+        <div class="skill-category reveal">
+          <div class="skill-category-header">
+            <div class="skill-category-icon"><i class="fas fa-bug"></i></div>
+            <h3 class="skill-category-title">Testing & QA</h3>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">Manual Testing</span><span class="skill-percent">90%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">API Testing</span><span class="skill-percent">80%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">SQL Testing</span><span class="skill-percent">75%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info"><span class="skill-name">Jira & Bug Tracking</span><span class="skill-percent">80%</span></div>
+            <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 48px;">
+        <a href="skills.html" class="btn btn-outline">
+          View All Skills <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
 
-        // Scroll effect
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
+  <!-- PROJECTS (summary) -->
+  <section class="section section-alt" id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Projects</span>
+        <h2 class="section-title">My Recent Work</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <div class="project-image" style="padding:0;overflow:hidden;">
+            <img src="images/projects/voyageai.svg" alt="VoyageAI Preview" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">VoyageAI — AI Travel Planner</h3>
+            <p class="project-description">An AI-powered travel planning platform with OpenAI GPT-4o integration. Features trip planner, chat assistant, content generator, and data analyzer.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Next.js 14</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">OpenAI GPT-4o</span>
+              <span class="tech-tag">MongoDB</span>
+            </div>
+            <a href="project-detail.html?project=voyageai" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-image" style="padding:0;overflow:hidden;">
+            <img src="images/projects/fundspark.svg" alt="FundSpark Preview" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">FundSpark — Crowdfunding Platform</h3>
+            <p class="project-description">A full-stack MERN crowdfunding platform with credit system, campaign management, Stripe payments, and role-based dashboards.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Next.js 14</span>
+              <span class="tech-tag">React 18</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">Stripe</span>
+            </div>
+            <a href="project-detail.html?project=fundspark" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="project-card reveal">
+          <div class="project-image" style="padding:0;overflow:hidden;">
+            <img src="images/projects/fable.svg" alt="Fable Preview" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Fable — Digital Ebook Marketplace</h3>
+            <p class="project-description">A modern ebook sharing platform with role-based dashboards for readers, writers, and admins. Features Stripe payments and Firebase Auth.</p>
+            <div class="project-tech">
+              <span class="tech-tag">Next.js 16</span>
+              <span class="tech-tag">React 19</span>
+              <span class="tech-tag">Tailwind CSS</span>
+              <span class="tech-tag">Firebase</span>
+            </div>
+            <a href="project-detail.html?project=fable" class="project-link">View Details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 48px;">
+        <a href="projects.html" class="btn btn-outline">
+          View All Projects <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
 
-        // Mobile toggle
-        navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
+  <!-- EXPERIENCE (summary) -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Experience</span>
+        <h2 class="section-title">Where I've Worked</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="experience-grid">
+        <div class="experience-card reveal">
+          <div class="experience-header">
+            <div class="experience-icon"><i class="fas fa-flask"></i></div>
+            <div>
+              <div class="experience-role">Software QA Engineer</div>
+              <div class="experience-company">Ginilab Ltd.</div>
+            </div>
+          </div>
+          <div class="experience-duration">Present</div>
+          <p class="experience-description">Performing Manual Testing, API Testing, SQL Testing, and Log Analysis. Tracking bugs and conducting root cause analysis using Jira.</p>
+        </div>
+        <div class="experience-card reveal">
+          <div class="experience-header">
+            <div class="experience-icon"><i class="fas fa-laptop-code"></i></div>
+            <div>
+              <div class="experience-role">Full Stack Developer</div>
+              <div class="experience-company">Personal & Open Source</div>
+            </div>
+          </div>
+          <div class="experience-duration">2023 — Present</div>
+          <p class="experience-description">Built 32 repositories on GitHub including full-stack MERN applications, Python CLI tools, PHP apps, and database design projects.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Close mobile menu on link click
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                navToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
+  <!-- CONTACT (summary) -->
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Contact</span>
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+          <a href="mailto:meherunnfk@yahoo.com" class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">meherunnfk@yahoo.com</div>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/meherun-nessa-ferdausi-korobi/" target="_blank" class="contact-item">
+            <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+            <div>
+              <div class="contact-label">LinkedIn</div>
+              <div class="contact-value">Meherun Nessa Ferdausi</div>
+            </div>
+          </a>
+          <a href="https://www.facebook.com/rooonroon" target="_blank" class="contact-item">
+            <div class="contact-icon"><i class="fab fa-facebook-f"></i></div>
+            <div>
+              <div class="contact-label">Facebook</div>
+              <div class="contact-value">rooonroon</div>
+            </div>
+          </a>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <a href="contact.html" class="btn btn-primary" style="font-size: 1.1rem; padding: 18px 36px;">
+            <i class="fas fa-arrow-right"></i> Go to Contact Page
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Active link on scroll
-        const sections = document.querySelectorAll('section[id]');
-        window.addEventListener('scroll', () => {
-            const scrollY = window.pageYOffset;
-            sections.forEach(section => {
-                const sectionHeight = section.offsetHeight;
-                const sectionTop = section.offsetTop - 100;
-                const sectionId = section.getAttribute('id');
-                
-                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                    navItems.forEach(item => {
-                        item.classList.remove('active');
-                        if (item.getAttribute('href') === `#${sectionId}`) {
-                            item.classList.add('active');
-                        }
-                    });
-                }
-            });
-        });
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2026 Meherun Nessa Ferdausi. Crafted with <i class="fas fa-heart" style="color: var(--accent-warm);"></i> and lots of coffee.</p>
+        <div class="footer-socials">
+          <a href="https://github.com/meheroon" target="_blank" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/meherun-nessa-ferdausi-korobi/" target="_blank" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/rooonroon" target="_blank" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-        // ===== SCROLL REVEAL =====
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        // ===== SKILL BARS ANIMATION =====
-        const skillBars = document.querySelectorAll('.skill-progress');
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const width = entry.target.getAttribute('data-width');
-                    entry.target.style.width = `${width}%`;
-                }
-            });
-        }, { threshold: 0.5 });
-
-        skillBars.forEach(bar => skillObserver.observe(bar));
-
-        // ===== PROJECT MODAL =====
-        function openModal(index) {
-            const project = projects[index];
-            const modal = document.getElementById('projectModal');
-            
-            document.getElementById('modalImage').innerHTML = `<i class="${project.icon}"></i>`;
-            document.getElementById('modalTitle').textContent = project.title;
-            document.getElementById('modalDescription').textContent = project.description;
-            document.getElementById('modalLive').href = project.live;
-            document.getElementById('modalGithub').href = project.github;
-            
-            document.getElementById('modalTech').innerHTML = project.tech
-                .map(t => `<span class="tech-tag">${t}</span>`)
-                .join('');
-            
-            document.getElementById('modalChallenges').innerHTML = project.challenges
-                .map(c => `<li>${c}</li>`)
-                .join('');
-            
-            document.getElementById('modalImprovements').innerHTML = project.improvements
-                .map(i => `<li>${i}</li>`)
-                .join('');
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('projectModal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        // Close modal on overlay click
-        document.getElementById('projectModal').addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) closeModal();
-        });
-
-        // Close modal on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        // ===== CONTACT FORM =====
-        function handleSubmit(e) {
-            e.preventDefault();
-            const form = e.target;
-            const name = form.name.value;
-            const email = form.email.value;
-            const subject = form.subject.value;
-            const message = form.message.value;
-            
-            // Create mailto link
-            const mailtoLink = `mailto:meherunnfk@yahoo.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
-            window.location.href = mailtoLink;
-            
-            form.reset();
-            alert('Opening your email client...');
-        }
-    </script>
+  <script src="shared.js"></script>
 </body>
 </html>
