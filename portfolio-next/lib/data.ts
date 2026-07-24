@@ -68,6 +68,7 @@ export const skills: SkillCategory[] = [
       { name: "PHP", percent: 65 },
       { name: "Laravel", percent: 70 },
       { name: "Django", percent: 55 },
+      { name: "Flutter", percent: 50 },
     ],
   },
   {
