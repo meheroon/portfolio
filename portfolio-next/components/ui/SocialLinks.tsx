@@ -24,7 +24,7 @@ export default function SocialLinks({ className = "", size = 20 }: SocialLinksPr
           target="_blank"
           rel="noopener noreferrer"
           aria-label={link.label}
-          className="w-12 h-12 flex items-center justify-center bg-card-bg border border-border rounded-xl text-text-secondary text-xl transition-all duration-300 hover:text-accent hover:border-accent hover:-translate-y-0.5"
+          className="w-11 h-11 flex items-center justify-center bg-card-bg border border-border rounded-xl text-text-secondary transition-all duration-300 hover:text-accent hover:border-accent hover:-translate-y-0.5"
         >
           <link.icon size={size} />
         </a>
