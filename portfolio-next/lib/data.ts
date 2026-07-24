@@ -44,43 +44,37 @@ export interface SkillCategory {
 
 export const skills: SkillCategory[] = [
   {
-    title: "Frontend",
-    icon: "palette",
+    title: "Programming Languages",
+    icon: "code",
     skills: [
-      { name: "JavaScript (ES6+)", percent: 90 },
-      { name: "React.js", percent: 85 },
-      { name: "Next.js", percent: 80 },
-      { name: "Tailwind CSS", percent: 88 },
+      { name: "JavaScript", percent: 90 },
       { name: "TypeScript", percent: 75 },
+      { name: "Python", percent: 70 },
+      { name: "PHP", percent: 65 },
     ],
   },
   {
-    title: "Backend",
-    icon: "server",
+    title: "Frontend Development",
+    icon: "palette",
     skills: [
-      { name: "Node.js", percent: 82 },
-      { name: "Express.js", percent: 80 },
-      { name: "MongoDB", percent: 75 },
-      { name: "MySQL", percent: 70 },
-      { name: "REST APIs", percent: 85 },
-      { name: "Firebase & JWT", percent: 75 },
-      { name: "Python", percent: 70 },
-      { name: "PHP", percent: 65 },
-      { name: "Laravel", percent: 70 },
-      { name: "Django", percent: 55 },
+      { name: "React.js", percent: 85 },
+      { name: "Next.js", percent: 80 },
+      { name: "Tailwind CSS", percent: 88 },
       { name: "Flutter", percent: 50 },
     ],
   },
   {
-    title: "Tools & Others",
-    icon: "wrench",
+    title: "Backend Development",
+    icon: "server",
     skills: [
-      { name: "Git & GitHub", percent: 88 },
-      { name: "VS Code", percent: 92 },
-      { name: "Figma", percent: 70 },
-      { name: "Linux Basics", percent: 65 },
-      { name: "AI / LLM (OpenAI GPT)", percent: 70 },
-      { name: "Stripe Integration", percent: 72 },
+      { name: "Node.js", percent: 82 },
+      { name: "Express.js", percent: 80 },
+      { name: "Laravel", percent: 70 },
+      { name: "Django", percent: 55 },
+      { name: "MongoDB", percent: 75 },
+      { name: "MySQL", percent: 70 },
+      { name: "REST APIs", percent: 85 },
+      { name: "Firebase & JWT", percent: 75 },
     ],
   },
   {
@@ -94,6 +88,17 @@ export const skills: SkillCategory[] = [
       { name: "Log Analysis", percent: 70 },
     ],
   },
+];
+
+export const tools = [
+  "Git & GitHub",
+  "VS Code",
+  "Figma",
+  "Linux",
+  "AI / LLM (OpenAI GPT)",
+  "Stripe Integration",
+  "Postman",
+  "Jira",
 ];
 
 export interface Project {
