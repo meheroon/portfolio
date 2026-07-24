@@ -30,8 +30,8 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-[1200px] mx-auto px-6 h-full flex items-center justify-between">
-        <Link href="/" className="text-2xl font-extrabold tracking-[-0.5px]">
-          Meherun<span className="text-accent">.</span>Dev
+        <Link href="/" className="text-lg font-bold tracking-[-0.3px]">
+          Meherun Nessa Ferdausi
         </Link>
 
         {/* Desktop Nav */}

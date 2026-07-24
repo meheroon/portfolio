@@ -1,8 +1,7 @@
 import Image from "next/image";
 import { personalInfo } from "@/lib/data";
 import SocialLinks from "@/components/ui/SocialLinks";
-import Button from "@/components/ui/Button";
-import { Download, Eye, Send } from "lucide-react";
+import { Download, Eye, Send, Mail } from "lucide-react";
 import Link from "next/link";
 
 export default function Hero() {
@@ -27,22 +26,18 @@ export default function Hero() {
             {personalInfo.heroDesignation}
           </p>
 
-          <div className="flex gap-4 flex-wrap mb-10">
-            <Button variant="primary">
-              <Download size={18} />
-              Download Resume
-            </Button>
-            <Link href="/resume">
-              <Button variant="secondary">
-                <Eye size={18} />
-                View Resume
-              </Button>
+          <div className="flex gap-3 flex-wrap mb-10">
+            <a href="#" className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-accent to-[#5a52d5] text-text-primary rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_var(--accent-glow)]" title="Download Resume">
+              <Download size={20} />
+            </a>
+            <Link href="/resume" className="w-12 h-12 flex items-center justify-center bg-card-bg border border-border text-text-primary rounded-xl transition-all duration-300 hover:border-accent hover:bg-card-hover" title="View Resume">
+              <Eye size={20} />
             </Link>
-            <Link href="/contact">
-              <Button variant="secondary">
-                <Send size={18} />
-                Get In Touch
-              </Button>
+            <a href={`mailto:${personalInfo.email}`} className="w-12 h-12 flex items-center justify-center bg-card-bg border border-border text-text-primary rounded-xl transition-all duration-300 hover:border-accent hover:bg-card-hover" title="Send Email">
+              <Mail size={20} />
+            </a>
+            <Link href="/contact" className="w-12 h-12 flex items-center justify-center bg-card-bg border border-border text-text-primary rounded-xl transition-all duration-300 hover:border-accent hover:bg-card-hover" title="Get In Touch">
+              <Send size={20} />
             </Link>
           </div>
 
