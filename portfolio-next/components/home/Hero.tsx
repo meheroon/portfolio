@@ -1,8 +1,21 @@
 import Image from "next/image";
 import { personalInfo } from "@/lib/data";
-import SocialLinks from "@/components/ui/SocialLinks";
 import { Download, Eye, Send, Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon, FacebookIcon } from "@/components/ui/Icons";
 import Link from "next/link";
+
+const actionIcons = [
+  { href: "#", icon: Download, label: "Download Resume", primary: true },
+  { href: "/resume", icon: Eye, label: "View Resume", primary: false },
+  { href: `mailto:${personalInfo.email}`, icon: Mail, label: "Send Email", primary: false },
+  { href: "/contact", icon: Send, label: "Get In Touch", primary: false },
+];
+
+const socialIcons = [
+  { href: personalInfo.social.github, icon: GithubIcon, label: "GitHub" },
+  { href: personalInfo.social.linkedin, icon: LinkedinIcon, label: "LinkedIn" },
+  { href: personalInfo.social.facebook, icon: FacebookIcon, label: "Facebook" },
+];
 
 export default function Hero() {
   return (
@@ -10,56 +23,70 @@ export default function Hero() {
       <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
         {/* Content */}
         <div>
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-card-bg border border-border rounded-full text-sm text-accent mb-6">
-            <span className="w-2 h-2 bg-accent-secondary rounded-full animate-pulse" />
-            Available for opportunities
-          </div>
-
-          <h1 className="text-[clamp(2.2rem,4.5vw,3.4rem)] font-extrabold leading-[1.15] mb-4 tracking-[-0.5px]">
-            Hi, I&apos;m{" "}
-            <span className="bg-gradient-to-br from-accent to-accent-secondary bg-clip-text text-transparent">
-              {personalInfo.name}
-            </span>
-          </h1>
-
-          <p className="text-[clamp(1rem,1.8vw,1.2rem)] text-text-secondary mb-8 font-normal max-w-[480px] leading-relaxed">
-            {personalInfo.heroDesignation}
+          <p className="text-accent text-sm font-semibold mb-3 tracking-wide">
+            Hi, I&apos;m {personalInfo.shortName}
           </p>
 
-          {/* Action Icons - Single Row */}
-          <div className="flex items-center gap-3 mb-8">
-            <a
-              href="#"
-              className="w-11 h-11 flex items-center justify-center bg-gradient-to-br from-accent to-[#5a52d5] text-white rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_var(--accent-glow)]"
-              title="Download Resume"
-            >
-              <Download size={18} />
-            </a>
-            <Link
-              href="/resume"
-              className="w-11 h-11 flex items-center justify-center bg-card-bg border border-border text-text-secondary rounded-xl transition-all duration-300 hover:border-accent hover:text-text-primary hover:bg-card-hover"
-              title="View Resume"
-            >
-              <Eye size={18} />
-            </Link>
-            <a
-              href={`mailto:${personalInfo.email}`}
-              className="w-11 h-11 flex items-center justify-center bg-card-bg border border-border text-text-secondary rounded-xl transition-all duration-300 hover:border-accent hover:text-text-primary hover:bg-card-hover"
-              title="Send Email"
-            >
-              <Mail size={18} />
-            </a>
-            <Link
-              href="/contact"
-              className="w-11 h-11 flex items-center justify-center bg-card-bg border border-border text-text-secondary rounded-xl transition-all duration-300 hover:border-accent hover:text-text-primary hover:bg-card-hover"
-              title="Get In Touch"
-            >
-              <Send size={18} />
-            </Link>
-          </div>
+          <h1 className="text-[clamp(2.8rem,6vw,4.5rem)] font-extrabold leading-[1.05] mb-5 tracking-[-1px]">
+            {personalInfo.name}
+          </h1>
 
-          {/* Social Icons - Single Row */}
-          <SocialLinks size={18} />
+          <h2 className="text-[clamp(1.1rem,2.2vw,1.5rem)] font-semibold text-accent-secondary mb-5">
+            {personalInfo.heroDesignation}
+          </h2>
+
+          <p className="text-[clamp(0.95rem,1.5vw,1.1rem)] text-text-secondary mb-8 max-w-[520px] leading-[1.7]">
+            {personalInfo.heroDescription}
+          </p>
+
+          {/* All Icons - One Single Row */}
+          <div className="flex items-center gap-2">
+            {actionIcons.map((item) => {
+              const Icon = item.icon;
+              return item.href === "#" ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className={`w-10 h-10 flex items-center justify-center rounded-lg transition-all duration-300 hover:-translate-y-0.5 ${
+                    item.primary
+                      ? "bg-gradient-to-br from-accent to-[#5a52d5] text-white hover:shadow-[0_8px_30px_var(--accent-glow)]"
+                      : "bg-card-bg border border-border text-text-secondary hover:border-accent hover:text-text-primary hover:bg-card-hover"
+                  }`}
+                  title={item.label}
+                >
+                  <Icon size={16} />
+                </a>
+              ) : (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="w-10 h-10 flex items-center justify-center bg-card-bg border border-border text-text-secondary rounded-lg transition-all duration-300 hover:border-accent hover:text-text-primary hover:bg-card-hover"
+                  title={item.label}
+                >
+                  <Icon size={16} />
+                </Link>
+              );
+            })}
+
+            <div className="w-px h-5 bg-border mx-1" />
+
+            {socialIcons.map((item) => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={item.label}
+                  className="w-10 h-10 flex items-center justify-center bg-card-bg border border-border text-text-secondary rounded-lg transition-all duration-300 hover:border-accent hover:text-text-primary hover:bg-card-hover"
+                  title={item.label}
+                >
+                  <Icon size={16} />
+                </a>
+              );
+            })}
+          </div>
         </div>
 
         {/* Photo with Frame */}
