@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Meherun Nessa Ferdausi — Developer Portfolio
+
+A modern, responsive developer portfolio built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
+
+## Live Demo
+
+[meheroon-portfolio.vercel.app](https://meheroon-portfolio.vercel.app/)
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Animations**: Framer Motion
+- **Forms**: React Hook Form + Zod validation
+- **Icons**: Lucide React
+- **Testing**: Jest + React Testing Library
+
+## Features
+
+- Fully responsive navbar with mobile menu
+- Hero section with profile photo, designation, and social links
+- Skills section with animated progress bars
+- 6 project cards with dynamic detail pages (`/projects/[slug]`)
+- Contact form with client-side validation
+- Resume page with print-optimized layout
+- SEO: dynamic metadata, Open Graph tags, sitemap, robots.txt
+- Security headers (X-Frame-Options, CSP, Referrer-Policy)
+- Scroll reveal animations via Framer Motion
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Run tests
+npm test
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+portfolio-next/
+├── app/                    # Next.js App Router pages
+│   ├── page.tsx            # Home page
+│   ├── about/page.tsx      # About page
+│   ├── skills/page.tsx     # Skills page
+│   ├── projects/           # Projects + dynamic [slug]
+│   ├── contact/page.tsx    # Contact page
+│   └── resume/page.tsx     # Resume page
+├── components/             # Reusable React components
+│   ├── layout/             # Navbar, Footer, PageHeader
+│   ├── home/               # Hero, About, Skills, Projects, Experience, Contact sections
+│   ├── ui/                 # Button, SkillBar, SocialLinks, ScrollReveal, etc.
+│   └── [feature]/          # Page-specific components
+├── lib/                    # Data and utilities
+│   ├── data.ts             # All portfolio content
+│   └── utils.ts            # cn() helper
+└── public/images/          # Static assets
+```
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Deployed on [Vercel](https://meheroon-portfolio.vercel.app/).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contact
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Email**: meherun.dev@gmail.com
+- **LinkedIn**: [Meherun Nessa Ferdausi](https://www.linkedin.com/in/meherun-nessa-ferdausi-korobi/)
+- **GitHub**: [meheroon](https://github.com/meheroon)
+- **Facebook**: [rooonroon](https://www.facebook.com/rooonroon)

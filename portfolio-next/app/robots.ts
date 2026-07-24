@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://meheroon.github.io/portfolio/sitemap.xml",
+    sitemap: "https://meheroon-portfolio.vercel.app/sitemap.xml",
   };
 }

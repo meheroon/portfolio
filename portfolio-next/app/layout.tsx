@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://meheroon.github.io/portfolio/",
+    url: "https://meheroon-portfolio.vercel.app/",
     title: "Meherun Nessa Ferdausi — Full Stack Developer",
     description:
       "Full Stack Software Engineer specializing in MERN stack, Next.js, and QA engineering.",
