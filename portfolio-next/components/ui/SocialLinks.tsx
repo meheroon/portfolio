@@ -1,12 +1,12 @@
 "use client";
 
 import { personalInfo } from "@/lib/data";
-import { Github, Linkedin, Facebook } from "lucide-react";
+import { GithubIcon, LinkedinIcon, FacebookIcon } from "@/components/ui/Icons";
 
 const links = [
-  { href: personalInfo.social.github, label: "GitHub", icon: Github },
-  { href: personalInfo.social.linkedin, label: "LinkedIn", icon: Linkedin },
-  { href: personalInfo.social.facebook, label: "Facebook", icon: Facebook },
+  { href: personalInfo.social.github, label: "GitHub", icon: GithubIcon },
+  { href: personalInfo.social.linkedin, label: "LinkedIn", icon: LinkedinIcon },
+  { href: personalInfo.social.facebook, label: "Facebook", icon: FacebookIcon },
 ];
 
 interface SocialLinksProps {

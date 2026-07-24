@@ -3,15 +3,15 @@
 import { personalInfo } from "@/lib/data";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import Button from "@/components/ui/Button";
-import { Mail, Linkedin, Facebook, Github, Phone, MessageCircle } from "lucide-react";
+import { Mail, Phone, MessageCircle, ArrowRight } from "lucide-react";
+import { GithubIcon, LinkedinIcon, FacebookIcon } from "@/components/ui/Icons";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 const contactItems = [
   { icon: Mail, label: "Email", value: personalInfo.email, href: `mailto:${personalInfo.email}` },
-  { icon: Linkedin, label: "LinkedIn", value: "Meherun Nessa Ferdausi", href: personalInfo.social.linkedin },
-  { icon: Facebook, label: "Facebook", value: "rooonroon", href: personalInfo.social.facebook },
-  { icon: Github, label: "GitHub", value: "meheroon", href: personalInfo.social.github },
+  { icon: LinkedinIcon, label: "LinkedIn", value: "Meherun Nessa Ferdausi", href: personalInfo.social.linkedin },
+  { icon: FacebookIcon, label: "Facebook", value: "rooonroon", href: personalInfo.social.facebook },
+  { icon: GithubIcon, label: "GitHub", value: "meheroon", href: personalInfo.social.github },
   { icon: Phone, label: "Phone", value: personalInfo.phone, href: null },
   { icon: MessageCircle, label: "WhatsApp", value: personalInfo.whatsapp, href: null },
 ];

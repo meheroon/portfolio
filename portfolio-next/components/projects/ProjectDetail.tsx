@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { type Project } from "@/lib/data";
 import Button from "@/components/ui/Button";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
+import { GithubIcon } from "@/components/ui/Icons";
 
 interface ProjectDetailProps {
   project: Project;
@@ -115,7 +116,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
           )}
           <a href={project.github} target="_blank" rel="noopener noreferrer">
             <Button variant="secondary">
-              <Github size={16} /> Source Code (Client)
+              <GithubIcon size={16} /> Source Code (Client)
             </Button>
           </a>
         </div>
