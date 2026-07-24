@@ -47,7 +47,6 @@ export const skills: SkillCategory[] = [
     title: "Frontend",
     icon: "palette",
     skills: [
-      { name: "Laravel", percent: 70 },
       { name: "JavaScript (ES6+)", percent: 90 },
       { name: "React.js", percent: 85 },
       { name: "Next.js", percent: 80 },
@@ -67,6 +66,8 @@ export const skills: SkillCategory[] = [
       { name: "Firebase & JWT", percent: 75 },
       { name: "Python", percent: 70 },
       { name: "PHP", percent: 65 },
+      { name: "Laravel", percent: 70 },
+      { name: "Django", percent: 55 },
     ],
   },
   {
