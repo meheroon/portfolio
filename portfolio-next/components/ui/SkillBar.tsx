@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 interface SkillBarProps {
   name: string;
   percent: number;
@@ -15,12 +13,9 @@ export default function SkillBar({ name, percent }: SkillBarProps) {
         <span className="text-sm text-accent font-semibold">{percent}%</span>
       </div>
       <div className="h-2 bg-ink-lighter rounded overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${percent}%` }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 1, ease: "easeOut" }}
+        <div
           className="h-full bg-gradient-to-r from-accent to-accent-secondary rounded"
+          style={{ width: `${percent}%` }}
         />
       </div>
     </div>
