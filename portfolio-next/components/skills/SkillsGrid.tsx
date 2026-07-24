@@ -3,7 +3,7 @@
 import { skills } from "@/lib/data";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import SkillBar from "@/components/ui/SkillBar";
-import { Palette, Server, Bug, Wrench } from "lucide-react";
+import { Palette, Server, Bug, Wrench, Code } from "lucide-react";
 
 const iconMap: Record<string, React.ElementType> = {
   palette: Palette,
