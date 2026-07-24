@@ -76,52 +76,42 @@ body {
   background: var(--accent);
 }
 
-/* Hero Photo Frame */
+/* Hero Photo Frame - Classic Style */
 .hero-photo-frame {
   position: relative;
-  width: 360px;
-  height: 360px;
+  padding: 12px;
+  background: linear-gradient(145deg, #2a2a4a, #1a1a3e, #2a2a4a);
+  border-radius: 8px;
+  box-shadow:
+    0 0 0 2px rgba(108, 99, 255, 0.2),
+    0 0 0 4px rgba(10, 10, 26, 0.8),
+    0 0 0 6px rgba(108, 99, 255, 0.15),
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .hero-photo-frame::before {
   content: '';
   position: absolute;
-  inset: -4px;
-  border-radius: 24px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-  z-index: 0;
-}
-
-.hero-photo-frame::after {
-  content: '';
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  width: 80px;
-  height: 80px;
-  border: 3px solid var(--accent-secondary);
-  border-radius: 16px;
-  z-index: 0;
-  opacity: 0.4;
+  inset: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  pointer-events: none;
 }
 
 .hero-photo-inner {
   position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
+  width: 320px;
+  height: 320px;
+  border-radius: 4px;
   overflow: hidden;
-  z-index: 1;
 }
 
-.hero-dot {
+.hero-photo-inner::after {
+  content: '';
   position: absolute;
-  bottom: -16px;
-  left: -16px;
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
-  background: rgba(108, 99, 255, 0.15);
-  border: 2px solid rgba(108, 99, 255, 0.3);
-  z-index: 0;
+  inset: 0;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  pointer-events: none;
 }

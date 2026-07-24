@@ -27,7 +27,7 @@ export default function Hero() {
             Hi, I&apos;m {personalInfo.shortName}
           </p>
 
-          <h1 className="text-[clamp(2.8rem,6vw,4.5rem)] font-extrabold leading-[1.05] mb-5 tracking-[-1px]">
+          <h1 className="text-[clamp(2rem,4vw,3rem)] font-extrabold leading-[1.1] mb-4 tracking-[-0.5px]">
             {personalInfo.name}
           </h1>
 
@@ -35,7 +35,7 @@ export default function Hero() {
             {personalInfo.heroDesignation}
           </h2>
 
-          <p className="text-[clamp(0.95rem,1.5vw,1.1rem)] text-text-secondary mb-8 max-w-[520px] leading-[1.7]">
+          <p className="text-[clamp(0.85rem,1.3vw,0.95rem)] text-text-secondary mb-8 max-w-[480px] leading-[1.7]">
             {personalInfo.heroDescription}
           </p>
 
@@ -89,21 +89,20 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Photo with Frame */}
+        {/* Photo with Classic Frame */}
         <div className="flex justify-center lg:justify-end">
           <div className="hero-photo-frame">
             <div className="hero-photo-inner">
               <Image
                 src={personalInfo.photo}
                 alt={personalInfo.name}
-                width={360}
-                height={360}
+                width={320}
+                height={320}
                 className="w-full h-full object-cover"
                 priority
-                sizes="(max-width: 768px) 280px, 360px"
+                sizes="(max-width: 768px) 260px, 320px"
               />
             </div>
-            <div className="hero-dot" />
           </div>
         </div>
       </div>
