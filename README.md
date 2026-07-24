@@ -11,6 +11,6 @@ A modern, responsive developer portfolio showcasing full-stack projects and QA e
 [View Portfolio](https://meheroon.github.io/portfolio/)
 
 ## Contact
-- Email: meherunnfk@yahoo.com
+- Email: meherun.dev@gmail.com
 - LinkedIn: [Meherun Nessa Ferdausi](https://www.linkedin.com/in/meherun-nessa-ferdausi-korobi/)
 - GitHub: [meheroon](https://github.com/meheroon)
