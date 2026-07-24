@@ -266,7 +266,7 @@ export const education: Education[] = [
   {
     date: "Higher Secondary Certificate (HSC)",
     title: "Science Group",
-    institution: "College — Bangladesh",
+    institution: "Ideal School & College — Bangladesh",
     description:
       "Completed HSC in Science group with Physics, Chemistry, and Mathematics. Developed early interest in programming and problem-solving during this period.",
   },
