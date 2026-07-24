@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="50%" style="stop-color:#1e293b"/>
+      <stop offset="100%" style="stop-color:#0ea5e9"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0ea5e9"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <!-- Decorative circles -->
+  <circle cx="650" cy="100" r="180" fill="rgba(14,165,233,0.08)"/>
+  <circle cx="700" cy="350" r="120" fill="rgba(6,182,212,0.06)"/>
+  <circle cx="100" cy="380" r="100" fill="rgba(14,165,233,0.05)"/>
+  <!-- Grid pattern -->
+  <g opacity="0.05" stroke="white" stroke-width="1">
+    <line x1="0" y1="90" x2="800" y2="90"/><line x1="0" y1="180" x2="800" y2="180"/>
+    <line x1="0" y1="270" x2="800" y2="270"/><line x1="0" y1="360" x2="800" y2="360"/>
+    <line x1="160" y1="0" x2="160" y2="450"/><line x1="320" y1="0" x2="320" y2="450"/>
+    <line x1="480" y1="0" x2="480" y2="450"/><line x1="640" y1="0" x2="640" y2="450"/>
+  </g>
+  <!-- AI Brain icon -->
+  <g transform="translate(400,180)" fill="none" stroke="url(#accent)" stroke-width="2">
+    <circle r="40" opacity="0.3"/>
+    <circle r="28" opacity="0.5"/>
+    <path d="M-20,-10 Q0,-30 20,-10 Q30,5 20,15 Q10,25 0,15 Q-10,25 -20,15 Q-30,5 -20,-10Z" fill="rgba(14,165,233,0.2)"/>
+    <circle cx="-8" cy="-5" r="3" fill="#0ea5e9"/>
+    <circle cx="8" cy="-5" r="3" fill="#06b6d4"/>
+    <path d="M-5,8 Q0,14 5,8" stroke="#0ea5e9" fill="none" stroke-width="2"/>
+  </g>
+  <!-- Title -->
+  <text x="400" y="280" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="28" font-weight="800" fill="white">VoyageAI</text>
+  <text x="400" y="310" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="14" fill="#94a3b8">AI-Powered Travel Planning Platform</text>
+  <!-- Tech tags -->
+  <g transform="translate(400,350)" text-anchor="middle">
+    <rect x="-140" y="-12" width="80" height="24" rx="12" fill="rgba(14,165,233,0.15)" stroke="rgba(14,165,233,0.3)" stroke-width="1"/>
+    <text x="-100" y="4" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#0ea5e9">Next.js 14</text>
+    <rect x="-45" y="-12" width="80" height="24" rx="12" fill="rgba(14,165,233,0.15)" stroke="rgba(14,165,233,0.3)" stroke-width="1"/>
+    <text x="-5" y="4" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#0ea5e9">TypeScript</text>
+    <rect x="50" y="-12" width="80" height="24" rx="12" fill="rgba(14,165,233,0.15)" stroke="rgba(14,165,233,0.3)" stroke-width="1"/>
+    <text x="90" y="4" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#0ea5e9">OpenAI GPT</text>
+  </g>
+  <!-- Browser chrome mockup -->
+  <rect x="80" y="40" width="640" height="370" rx="12" fill="rgba(0,0,0,0.3)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <rect x="80" y="40" width="640" height="36" rx="12" fill="rgba(255,255,255,0.05)"/>
+  <circle cx="100" cy="58" r="5" fill="#ff5f57"/><circle cx="116" cy="58" r="5" fill="#febc2e"/><circle cx="132" cy="58" r="5" fill="#28c840"/>
+  <rect x="160" y="50" width="300" height="16" rx="8" fill="rgba(255,255,255,0.08)"/>
+  <text x="310" y="61" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">voyage-ai-sand.vercel.app</text>
+</svg>
