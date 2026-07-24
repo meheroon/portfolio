@@ -3,7 +3,7 @@
 import { skills } from "@/lib/data";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import SkillBar from "@/components/ui/SkillBar";
-import { Palette, Server, Bug, Wrench } from "lucide-react";
+import { Palette, Server, Bug, Wrench, Code } from "lucide-react";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
