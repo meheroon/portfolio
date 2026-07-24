@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, ArrowDown } from "lucide-react";
 
 export default function ScrollToTop() {
   const [show, setShow] = useState(false);
+  const [isAtBottom, setIsAtBottom] = useState(false);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -15,6 +16,7 @@ export default function ScrollToTop() {
 
       setProgress(scrollPercent);
       setShow(scrollTop > 400);
+      setIsAtBottom(scrollTop + window.innerHeight >= docHeight - 100);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -23,6 +25,10 @@ export default function ScrollToTop() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const scrollToBottom = () => {
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
   };
 
   return (
@@ -35,18 +41,34 @@ export default function ScrollToTop() {
         />
       </div>
 
-      {/* Scroll to Top Button */}
-      <button
-        onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 w-12 h-12 flex items-center justify-center bg-gradient-to-br from-accent to-[#5a52d5] text-white rounded-full shadow-lg z-[999] transition-all duration-300 cursor-pointer border-none ${
-          show
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 translate-y-4 pointer-events-none"
-        } hover:-translate-y-1 hover:shadow-[0_8px_30px_var(--accent-glow)]`}
-        aria-label="Scroll to top"
-      >
-        <ArrowUp size={20} />
-      </button>
+      {/* Navigation Buttons */}
+      <div className="fixed bottom-8 right-8 flex flex-col gap-3 z-[999]">
+        {/* Scroll to Top */}
+        <button
+          onClick={scrollToTop}
+          className={`w-11 h-11 flex items-center justify-center bg-gradient-to-br from-accent to-[#5a52d5] text-white rounded-full shadow-lg transition-all duration-300 cursor-pointer border-none ${
+            show
+              ? "opacity-100 translate-y-0 pointer-events-auto"
+              : "opacity-0 translate-y-4 pointer-events-none"
+          } hover:-translate-y-0.5 hover:shadow-[0_8px_30px_var(--accent-glow)]`}
+          aria-label="Scroll to top"
+        >
+          <ArrowUp size={18} />
+        </button>
+
+        {/* Scroll to Bottom */}
+        <button
+          onClick={scrollToBottom}
+          className={`w-11 h-11 flex items-center justify-center bg-card-bg border border-border text-text-secondary rounded-full shadow-lg transition-all duration-300 cursor-pointer ${
+            !isAtBottom
+              ? "opacity-100 translate-y-0 pointer-events-auto"
+              : "opacity-0 translate-y-4 pointer-events-none"
+          } hover:border-accent hover:text-text-primary hover:bg-card-hover`}
+          aria-label="Scroll to bottom"
+        >
+          <ArrowDown size={18} />
+        </button>
+      </div>
     </>
   );
 }
