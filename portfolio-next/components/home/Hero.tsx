@@ -97,8 +97,8 @@ export default function Hero() {
                 src={personalInfo.photo}
                 alt={personalInfo.name}
                 width={320}
-                height={320}
-                className="w-full h-full object-cover"
+                height={380}
+                className="w-full h-full object-cover object-top"
                 priority
                 sizes="(max-width: 768px) 260px, 320px"
               />

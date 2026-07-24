@@ -4,7 +4,7 @@ export const personalInfo = {
   designation: "Full Stack Software Engineer | Software QA Engineer | Learning Secure Software Development",
   heroDesignation: "Full Stack Software Engineer | Software QA Engineer",
   heroDescription: "I enjoy building practical, high-impact web applications across product layers. From full-stack MERN projects and AI-powered features to modern Next.js apps, I build systems that are reliable, scalable, and user-centered.",
-  photo: "/images/profile.png",
+  photo: "/images/profile.PNG",
   email: "meherun.dev@gmail.com",
   emailAlt: "meherunnfk@yahoo.com",
   phone: "+880 1729118981",
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     shortTitle: "VoyageAI",
     description:
       "A complete AI-powered travel planning platform combining modern web technologies with Large Language Models. Features an AI chat assistant, trip planner, content generator, recommendations engine, and data analyzer. Built with full-stack TypeScript, VoyageAI leverages OpenAI's GPT-4o model to provide intelligent travel suggestions, generate personalized itineraries, and analyze travel data with beautiful visualizations.",
-    image: "/images/projects/voyageai.svg",
+    image: "/images/projects/voyageai.PNG",
     tech: ["Next.js 14", "TypeScript", "OpenAI GPT-4o", "MongoDB", "TanStack Query", "Recharts", "Tailwind CSS"],
     challenges: [
       "Integrating OpenAI GPT-4o for multiple AI features (chat, planning, content generation) while managing rate limits and token costs",
@@ -144,7 +144,7 @@ export const projects: Project[] = [
     shortTitle: "FundSpark",
     description:
       "A full-stack MERN crowdfunding platform where creators raise money for projects. Features a credit system (50 free credits for supporters, 20 for creators), Stripe payment integration, campaign approval workflows, and role-based dashboards. FundSpark connects passionate creators with generous supporters through a transparent and secure funding process.",
-    image: "/images/projects/fundspark.svg",
+    image: "/images/projects/fundspark.PNG",
     tech: ["Next.js 14", "React 18", "Node.js", "MongoDB", "Stripe", "Firebase Auth", "Tailwind CSS"],
     challenges: [
       "Designing the credit-based contribution system with a 20:1 withdrawal ratio while maintaining financial accuracy",
@@ -167,7 +167,7 @@ export const projects: Project[] = [
     shortTitle: "Fable",
     description:
       "A modern ebook sharing platform built using the MERN Stack with Next.js 16 and React 19. Features role-based dashboards for readers, writers, and admins, Stripe payment integration, and Firebase authentication. Fable provides a seamless experience for discovering, purchasing, and reading digital books.",
-    image: "/images/projects/fable.svg",
+    image: "/images/projects/fable.PNG",
     tech: ["Next.js 16", "React 19", "Tailwind CSS", "Firebase Auth", "Stripe", "MongoDB"],
     challenges: [
       "Implementing role-based authorization across reader, writer, and admin dashboards with granular permissions",
@@ -190,7 +190,7 @@ export const projects: Project[] = [
     shortTitle: "JobHub",
     description:
       "A production-ready full-stack job board with 14 routes, JWT cookie-based authentication, admin dashboard, job management, search/filter/sort/pagination, and fully responsive design with charts. JobHub streamlines the job hunting process with an intuitive interface for both employers and job seekers.",
-    image: "/images/projects/jobhub.svg",
+    image: "/images/projects/jobhub.PNG",
     tech: ["Next.js 14", "TypeScript", "Tailwind CSS", "MongoDB", "JWT", "Recharts"],
     challenges: [
       "Building 14 routes with role-based middleware protection to ensure proper access control",
@@ -213,7 +213,7 @@ export const projects: Project[] = [
     shortTitle: "DriveFleet",
     description:
       "A complete car rental platform with separate client and server applications. Full-stack MERN implementation with user authentication, booking management, and vehicle listing. DriveFleet makes it easy to browse, compare, and rent vehicles with a clean and intuitive interface.",
-    image: "/images/projects/drivefleet.svg",
+    image: "/images/projects/drivefleet.PNG",
     tech: ["React", "Node.js", "Express.js", "MongoDB", "JWT", "REST API"],
     challenges: [
       "Designing the car rental booking flow with real-time availability checking and conflict prevention",
