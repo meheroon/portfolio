@@ -19,7 +19,7 @@ const socialLinks = [
 
 export default function ContactSummary() {
   return (
-    <section className="py-[100px] bg-ink-light relative">
+    <section id="contact" className="py-[100px] bg-ink-light relative">
       <div className="max-w-[1200px] mx-auto px-6">
         <ScrollReveal className="text-center mb-15">
           <span className="inline-block text-sm font-semibold text-accent uppercase tracking-[2px] mb-3">

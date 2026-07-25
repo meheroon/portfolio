@@ -8,7 +8,7 @@ const actionIcons = [
   { href: "#", icon: Download, label: "Download Resume", primary: true },
   { href: "/resume", icon: Eye, label: "View Resume", primary: false },
   { href: `mailto:${personalInfo.email}`, icon: Mail, label: "Send Email", primary: false },
-  { href: "/contact", icon: Send, label: "Get In Touch", primary: false },
+  { href: "#contact", icon: Send, label: "Get In Touch", primary: false },
 ];
 
 const socialIcons = [
