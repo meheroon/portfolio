@@ -38,40 +38,43 @@ export default function ContactForm() {
     <ScrollReveal delay={0.2}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="p-8 bg-card-bg border border-border rounded-[20px]"
+        className="p-8 bg-card-bg border border-border rounded-2xl"
       >
-        <div className="mb-5">
-          <label htmlFor="name" className="block text-sm font-semibold mb-2">
-            Your Name
-          </label>
-          <input
-            id="name"
-            type="text"
-            placeholder="John Doe"
-            {...register("name")}
-            className="w-full px-4 py-3.5 bg-ink border border-border rounded-xl text-text-primary font-[inherit] text-[0.95rem] transition-all duration-200 focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_var(--accent-glow)]"
-          />
-          {errors.name && (
-            <p className="text-accent-warm text-xs mt-1">{errors.name.message}</p>
-          )}
+        {/* Name & Email Row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label htmlFor="name" className="block text-sm font-semibold mb-2">
+              Your Name
+            </label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Your name"
+              {...register("name")}
+              className="w-full px-4 py-3.5 bg-ink border border-border rounded-xl text-text-primary font-[inherit] text-[0.95rem] transition-all duration-200 focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_var(--accent-glow)]"
+            />
+            {errors.name && (
+              <p className="text-accent-warm text-xs mt-1">{errors.name.message}</p>
+            )}
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-sm font-semibold mb-2">
+              Your Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="your@email.com"
+              {...register("email")}
+              className="w-full px-4 py-3.5 bg-ink border border-border rounded-xl text-text-primary font-[inherit] text-[0.95rem] transition-all duration-200 focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_var(--accent-glow)]"
+            />
+            {errors.email && (
+              <p className="text-accent-warm text-xs mt-1">{errors.email.message}</p>
+            )}
+          </div>
         </div>
 
-        <div className="mb-5">
-          <label htmlFor="email" className="block text-sm font-semibold mb-2">
-            Your Email
-          </label>
-          <input
-            id="email"
-            type="email"
-            placeholder="john@example.com"
-            {...register("email")}
-            className="w-full px-4 py-3.5 bg-ink border border-border rounded-xl text-text-primary font-[inherit] text-[0.95rem] transition-all duration-200 focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_var(--accent-glow)]"
-          />
-          {errors.email && (
-            <p className="text-accent-warm text-xs mt-1">{errors.email.message}</p>
-          )}
-        </div>
-
+        {/* Subject */}
         <div className="mb-5">
           <label htmlFor="subject" className="block text-sm font-semibold mb-2">
             Subject
@@ -79,7 +82,7 @@ export default function ContactForm() {
           <input
             id="subject"
             type="text"
-            placeholder="Project Inquiry"
+            placeholder="How can I help you?"
             {...register("subject")}
             className="w-full px-4 py-3.5 bg-ink border border-border rounded-xl text-text-primary font-[inherit] text-[0.95rem] transition-all duration-200 focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_var(--accent-glow)]"
           />
@@ -88,13 +91,14 @@ export default function ContactForm() {
           )}
         </div>
 
+        {/* Message */}
         <div className="mb-5">
           <label htmlFor="message" className="block text-sm font-semibold mb-2">
             Message
           </label>
           <textarea
             id="message"
-            placeholder="Tell me about your project..."
+            placeholder="Your message here..."
             rows={5}
             {...register("message")}
             className="w-full px-4 py-3.5 bg-ink border border-border rounded-xl text-text-primary font-[inherit] text-[0.95rem] transition-all duration-200 focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_var(--accent-glow)] resize-y min-h-[120px]"
@@ -104,12 +108,13 @@ export default function ContactForm() {
           )}
         </div>
 
+        {/* Submit Button */}
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-4 bg-gradient-to-br from-accent to-[#5a52d5] text-text-primary border-none rounded-xl text-base font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_var(--accent-glow)] disabled:opacity-50"
+          className="w-full py-4 bg-gradient-to-br from-accent to-[#5a52d5] text-white border-none rounded-xl text-base font-semibold cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_var(--accent-glow)] disabled:opacity-50 flex items-center justify-center gap-2"
         >
-          <Send size={16} className="inline mr-2" />
+          <Send size={18} />
           Send Message
         </button>
       </form>
