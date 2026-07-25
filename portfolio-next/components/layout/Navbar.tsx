@@ -10,12 +10,23 @@ import ThemeToggle from "@/components/ui/ThemeToggle";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setTheme(document.documentElement.classList.contains("light") ? "light" : "dark");
+    };
+    checkTheme();
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -40,14 +51,18 @@ export default function Navbar() {
     }
   };
 
+  const navBg = scrolled
+    ? theme === "dark"
+      ? "bg-[rgba(10,10,26,0.98)] shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+      : "bg-[rgba(255,255,255,0.98)] shadow-[0_4px_30px_rgba(0,0,0,0.08)]"
+    : theme === "dark"
+      ? "bg-[rgba(10,10,26,0.9)] backdrop-blur-xl"
+      : "bg-[rgba(255,255,255,0.9)] backdrop-blur-xl";
+
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 h-[70px] z-[1000] transition-all duration-300 border-b border-border ${
-          scrolled
-            ? "bg-[rgba(255,255,255,0.95)] dark:bg-[rgba(10,10,26,0.95)] shadow-[0_4px_30px_rgba(0,0,0,0.1)]"
-            : "bg-[rgba(255,255,255,0.85)] dark:bg-[rgba(10,10,26,0.85)] backdrop-blur-xl"
-        }`}
+        className={`fixed top-0 left-0 right-0 h-[70px] z-[1000] transition-all duration-300 border-b border-border ${navBg}`}
       >
         <div className="max-w-[1200px] mx-auto px-6 h-full flex items-center justify-between">
           <Link href="/" className="text-lg font-bold tracking-[-0.3px] z-10 text-text-primary">
@@ -102,15 +117,15 @@ export default function Navbar() {
       <div
         className={`md:hidden fixed inset-0 z-[999] transition-opacity duration-300 ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
+        } ${theme === "dark" ? "bg-black/50" : "bg-black/30"}`}
         onClick={() => setIsOpen(false)}
       />
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden fixed top-[70px] left-0 right-0 bottom-0 z-[1000] flex flex-col bg-[rgba(255,255,255,0.98)] dark:bg-[rgba(10,10,26,0.98)] backdrop-blur-xl transition-transform duration-300 ease-in-out ${
+        className={`md:hidden fixed top-[70px] left-0 right-0 bottom-0 z-[1000] flex flex-col backdrop-blur-xl transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        } ${theme === "dark" ? "bg-[rgba(10,10,26,0.98)]" : "bg-[rgba(255,255,255,0.98)]"}`}
       >
         <div className="flex flex-col justify-center items-center flex-1 gap-2 px-6">
           {navLinks.map((link) => (

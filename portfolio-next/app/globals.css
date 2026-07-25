@@ -18,18 +18,18 @@
 
 html.light {
   --ink: #ffffff;
-  --ink-light: #f8f9fa;
-  --ink-lighter: #e9ecef;
-  --accent: #6c63ff;
-  --accent-glow: rgba(108, 99, 255, 0.2);
-  --accent-secondary: #00b894;
-  --accent-warm: #e74c3c;
-  --text-primary: #1a1a2e;
-  --text-secondary: #4a5568;
-  --text-muted: #718096;
-  --border: rgba(0, 0, 0, 0.08);
-  --card-bg: rgba(0, 0, 0, 0.02);
-  --card-hover: rgba(0, 0, 0, 0.05);
+  --ink-light: #f5f5f7;
+  --ink-lighter: #e8e8ed;
+  --accent: #5b4fd6;
+  --accent-glow: rgba(91, 79, 214, 0.2);
+  --accent-secondary: #00a884;
+  --accent-warm: #dc3545;
+  --text-primary: #1d1d1f;
+  --text-secondary: #515154;
+  --text-muted: #86868b;
+  --border: rgba(0, 0, 0, 0.1);
+  --card-bg: rgba(0, 0, 0, 0.03);
+  --card-hover: rgba(0, 0, 0, 0.06);
 }
 
 @theme inline {
