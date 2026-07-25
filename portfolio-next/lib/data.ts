@@ -4,7 +4,7 @@ export const personalInfo = {
   designation: "Full Stack Software Engineer | Software QA Engineer | Learning Secure Software Development",
   heroDesignation: "Full Stack Software Engineer | Software QA Engineer",
   heroDescription: "I enjoy building practical, high-impact web applications across product layers. From full-stack MERN projects and AI-powered features to modern Next.js apps, I build systems that are reliable, scalable, and user-centered.",
-  photo: "/images/profile.PNG",
+  photo: "/images/profile.png",
   email: "meherun.dev@gmail.com",
   emailAlt: "meherunnfk@yahoo.com",
   phone: "+880 1729118981",
