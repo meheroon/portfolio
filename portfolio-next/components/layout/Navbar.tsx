@@ -21,6 +21,13 @@ export default function Navbar() {
     setIsOpen(false);
   }, [pathname]);
 
+  const handleNavClick = (href: string) => {
+    setIsOpen(false);
+    if (href === pathname) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 h-[70px] z-[1000] transition-all duration-300 border-b border-border ${
@@ -40,6 +47,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
+                onClick={() => handleNavClick(link.href)}
                 className={`px-4 py-2 rounded-lg text-[0.9rem] font-medium transition-all duration-200 ${
                   pathname === link.href
                     ? "text-text-primary bg-card-bg"
@@ -80,6 +88,7 @@ export default function Navbar() {
           <Link
             key={link.href}
             href={link.href}
+            onClick={() => handleNavClick(link.href)}
             className={`text-2xl py-3 px-6 w-full text-center rounded-lg font-medium transition-all ${
               pathname === link.href
                 ? "text-text-primary bg-card-bg"
